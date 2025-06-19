@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% block title %}Mis Ofertas{% endblock %}
+{% block content %}
+<section class="py-10">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6">📋 Mis ofertas</h2>
+    
+    {% if offers %}
+        {% for offer in offers %}
+            <div class="mb-6 p-4 border-l-4 border-blue-500 bg-white rounded shadow">
+                <a href="{% url 'task' offer.task.id offer.task.title|slugify %}">
+                    <h3 class="text-xl font-semibold text-blue-700">{{ offer.task.title }}</h3>
+                </a>
+
+                <ul class="mt-2 ml-4 text-gray-800 text-sm">
+                    <li class="mb-2">
+                        <strong>{{ offer.user.profile.full_name }}:</strong> 
+                        <em>“{{ offer.message }}”</em> – 
+                        {% if offer.status == 'pending' %}
+                        <span class="text-yellow-600">Pendiente</span>
+                        {% elif offer.status == 'accepted' %}
+                        <span class="text-green-600">Aceptada</span>
+                        {% else %}
+                        <span class="text-red-600">Rechazada</span>
+                        {% endif %}
+                    </li>
+                    <a href="{% url 'task' offer.task.id offer.task.title|slugify %}" class="text-blue-600 hover:underline">
+                        Ver detalles
+                    </a>
+                </ul>
+            </div>
+    {% endfor %}
+    {% else %}
+        <h3 class="text-xl font-semibold text-blue-700">No as ofertado</h3>
+    {% endif %}
+  </div>
+</section>
+{% endblock content %}

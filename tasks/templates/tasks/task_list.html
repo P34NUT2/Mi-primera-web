@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Tareas disponibles{% endblock %}
+{% block content %}
+
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-8 gap-4">
+        <h2 class="text-3xl font-bold">Tareas disponibles</h2>
+        
+        <!-- Botones decorativos -->
+        <div class="flex space-x-3">
+            <a href="{% url 'create' %}" class="bg-blue-500 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-600 transition ">
+                Publicar una tarea
+            </a>    
+          <button class="bg-white border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 text-sm">
+            <i class="fas fa-filter mr-1"></i> Filtrar
+          </button>
+          <button class="bg-white border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 text-sm ">
+            <i class="fas fa-sort mr-1"></i> Ordenar
+          </button>
+        </div>
+      </div>
+      
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+      {% for task in tasks %}
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm task-card transition duration-300 flex flex-col justify-between h-full">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">{{ task.title }}</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+              {{ task.category.name }}
+            </span>
+          </div>
+          <p class="text-gray-600 mb-4">{{ task.description|striptags|safe|truncatechars:"150" }}</p>
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <i class="fas fa-university mr-2"></i>
+            <span>{{task.author.profile.university}}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <span class="text-gray-500 text-sm">Entrega:</span>
+              <span class="font-medium">{{ task.deadline }}</span>
+            </div>
+            <span class="text-lg font-bold text-blue-600">${{ task.price }}</span>
+          </div>
+        </div>
+      
+        <div class="border-t border-gray-100 px-6 py-4 bg-gray-50 mt-auto">
+          <a href="{% url 'task' task.id task.title|slugify %}" class="block w-full bg-blue-600 text-white text-center py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+            Ver detalles
+          </a>
+        </div>
+      </div>
+      
+      {% empty %}
+        <p class="text-gray-500">Aún no hay tareas disponibles.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section> 
+
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends 'core/base.html' %}
+{% block title %}Inicio{% endblock title %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 slide-in">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Encuentra ayuda con tus tareas universitarias</h1>
+                <p class="text-xl mb-8">Conectamos estudiantes que necesitan ayuda con aquellos que pueden ofrecerla, todo dentro de un entorno seguro y confiable.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="{% url 'create' %}">
+                        <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition">
+                            Publicar una tarea
+                        </button>  
+                    </a>
+                    <a href="{% url 'tasks' %}">
+                        <button class="bg-blue-500 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-600 transition">
+                            Ver tareas disponibles
+                        </button> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">¿Cómo funciona UniTask?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl text-center slide-in">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-pen text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">1. Publica tu tarea</h3>
+                    <p class="text-gray-600">Describe la tarea que necesitas que realicen, incluyendo detalles importantes y fecha límite.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl text-center slide-in" style="animation-delay: 0.1s">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-users text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">2. Espera ofertas</h3>
+                    <p class="text-gray-600">Estudiantes verificados revisarán tu tarea y harán ofertas para completarla.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl text-center slide-in" style="animation-delay: 0.2s">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-circle text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">3. Recibe tu trabajo</h3>
+                    <p class="text-gray-600">Elige la mejor oferta, paga de forma segura y recibe tu tarea completada a tiempo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tasks Section -->
+    
+
+    <!-- Pricing -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Tarifas transparentes</h2>
+            <p class="text-gray-600 text-center mb-12">Solo cobramos una pequeña comisión por cada tarea completada</p>
+            
+            <div class="max-w-md mx-auto bg-blue-50 rounded-xl p-8 text-center">
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-2">Comisión por servicio</h3>
+                    <p class="text-4xl font-bold mb-4">10% o $10 MXN</p>
+                    <p class="text-gray-600 mb-6">por cada tarea completada con éxito</p>
+                    <div class="space-y-3 text-left">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Sin costos ocultos</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Pago seguro a través de la plataforma</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Garantía de satisfacción</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Lo que dicen nuestros usuarios</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Usuario" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Ana Martínez</h4>
+                            <p class="text-gray-500 text-sm">Estudiante de Derecho</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Gracias a UniTask pude entregar mi trabajo de investigación a tiempo cuando estaba enferma. El proceso fue muy sencillo y el resultado excelente."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Usuario" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Carlos Rodríguez</h4>
+                            <p class="text-gray-500 text-sm">Estudiante de Ingeniería</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"He completado más de 20 tareas a través de UniTask. Es una excelente manera de ganar dinero extra mientras ayudo a otros compañeros."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Usuario" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">María González</h4>
+                            <p class="text-gray-500 text-sm">Estudiante de Medicina</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"La plataforma es muy segura y fácil de usar. Me encanta que puedo elegir exactamente qué tareas quiero hacer según mis conocimientos."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">¿Listo para empezar?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Únete a la comunidad de estudiantes que están haciendo más fácil la vida universitaria.</p>
+            <a href="{% url 'register' %}">
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition">
+                    Regístrate ahora - ¡Es gratis!
+                </button>
+            </a>
+            
+        </div>
+    </section>
+{% endblock content %}

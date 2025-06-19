@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block title %}Confirmar acción{% endblock %}
+{% block content %}
+<div class="max-w-xl mx-auto mt-12 bg-white shadow p-6 rounded">
+  <h2 class="text-2xl font-bold mb-4">¿Confirmar acción?</h2>
+
+  <p class="mb-2">Estás a punto de 
+    {% if action == 'accept' %}
+      <span class="text-green-600 font-semibold">aceptar</span>
+    {% elif action == 'reject' %}
+      <span class="text-red-600 font-semibold">rechazar</span>
+    {% endif %}
+    la siguiente oferta:
+  </p>
+
+  <p class="italic text-gray-700 border-l-4 pl-4 border-gray-300 mb-4">
+    “{{ offer.message }}” — por <strong>{{ offer.user.username }}</strong>
+  </p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-8">Confirmar</button>
+    <a href="{% url 'offers_received' request.user|slugify %}" class="ml-4 text-gray-600 hover:underline">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

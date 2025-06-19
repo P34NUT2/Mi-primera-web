@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}perfil{% endblock title %}
+{% block content %} 
+
+<div class="max-w-4xl mx-auto py-12 px-6">
+    
+    <div class="bg-white shadow-lg rounded-xl p-8 flex flex-col md:flex-row items-center gap-8">
+      <!-- Imagen de perfil -->
+      <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-blue-500 shadow-md bg-gray-100">
+          {% if profile_user.profile.profile_image %}
+            <img src="{{ profile_user.profile.profile_image.url }}"
+                 alt="Foto de perfil"
+                 class="w-full h-full object-cover">
+          {% else %}
+            <img src="{% static 'registration/img/no-avatar.jpg' %}"
+                 alt="Foto de perfil por defecto"
+                 class="w-full h-full object-cover">
+          {% endif %}
+        </div>
+        
+  
+      <!-- Información del perfil -->
+      <div class="flex-1 w-full">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">{{ profile_user.profile.full_name }}</h2>
+        <p class="text-lg text-gray-600 mb-1"><span class="font-semibold">Universidad:</span> {{ profile_user.profile.university }}</p>
+        {% if user.profile.contact_info %}
+          <p class="text-lg text-gray-600 mb-4"><span class="font-semibold">Contacto:</span> {{ profile_user.profile.contact_info }}</p>
+        {% endif %}
+  
+        <!-- Botón para editar -->
+        <a href="{% url 'profile-tasks' profile_user.username|slugify %}"
+           class="inline-block mt-4 bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition">
+          Tareas de {{profile_user.profile.full_name}}
+        </a>
+      </div>
+    </div>
+  </div>
+
+{% endblock content%}

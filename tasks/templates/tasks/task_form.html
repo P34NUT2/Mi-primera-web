@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+{% if request.resolver_match.url_name == 'update' %}
+    Actualizar Tarea
+{% else %}
+    Publicar Tarea
+{% endif %}
+{% endblock title %}
+
+{% block content %}
+
+<div class="container mx-auto py-10 px-4">
+    <h2 class="text-2xl font-bold mb-6">
+        {% if request.resolver_match.url_name == 'update' %}
+            Actualizar Tarea
+        {% else %}
+            Publicar una nueva tarea
+        {% endif %}
+    </h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+        {% if request.resolver_match.url_name == 'update' %}
+            Actualizar Tarea
+        {% else %}
+            Publicar Tarea
+        {% endif %}
+    </button>
+    
+    {% if request.resolver_match.url_name == 'update' %}
+        <a href="{% url 'delete' task.id task.title|slugify %}" class="mt-4 inline-block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+            Eliminar Tarea
+        </a>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == 'update' %}
+        <a href="{% url 'task' task.id task.title|slugify %}" class="ml-4 text-blue-600 hover:underline">Cancelar</a>
+    {% else %}
+        <a href="{% url 'tasks' %}" class="ml-4 text-blue-600 hover:underline">Cancelar</a>
+    {% endif %}
+    
+  </form>
+</div>
+
+{% endblock %}

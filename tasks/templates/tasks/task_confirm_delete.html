@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block title %}Eliminar tarea{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4 py-10">
+  <h2 class="text-2xl font-bold mb-4">¿Estás seguro que deseas eliminar esta tarea?</h2>
+  <p class="mb-6">{{ task.title }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Sí, eliminar</button>
+    <a href="{% url 'task' task.id task.title|slugify %}" class="ml-4 text-blue-600 hover:underline">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

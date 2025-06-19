@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% block title %}Ofertar tarea{% endblock %}
+{% block content %}
+
+<section class="py-16 bg-white">
+  <div class="max-w-2xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-6 text-blue-700">Ofertar por la tarea</h2>
+
+    <form method="post" class="space-y-6 bg-gray-50 p-6 rounded-xl shadow">
+      {% csrf_token %}
+
+      <div>
+        {{ form.message.label_tag }}
+        {{ form.message }}
+        {% if form.message.errors %}
+          <p class="text-red-600 text-sm mt-1">{{ form.message.errors }}</p>
+        {% endif %}
+      </div>
+
+      <button type="submit"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition">
+        Enviar oferta
+      </button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
